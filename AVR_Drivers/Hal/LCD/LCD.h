@@ -79,7 +79,12 @@ typedef enum {
  * Prototypes
  ************************************************************/
 void LCD_Send_FallingEdge (void);
+void LCD_Send_Data (u8 Copy_u8_Data);
+void LCD_Send_Commoand(u8 Copy_u8_Command);
 void LCD_Init (void);
+void LCD_Display_Clear ();
+void lCD_SetPostion (u8 line , u8 x);
+void LCD_WriteNumber(u32 Number);
 
 
 #endif /* LCD_H_ */
