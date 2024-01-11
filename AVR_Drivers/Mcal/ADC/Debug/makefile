@@ -34,17 +34,17 @@ $(wildcard ../makefile.init) \
 $(wildcard ../makefile.targets) \
 
 
-BUILD_ARTIFACT_NAME := LCD
+BUILD_ARTIFACT_NAME := ADC
 BUILD_ARTIFACT_EXTENSION := elf
 BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
 
 # Add inputs and outputs from these tool invocations to the build variables 
 LSS += \
-LCD.lss \
+ADC.lss \
 
 FLASH_IMAGE += \
-LCD.hex \
+ADC.hex \
 
 SIZEDUMMY += \
 sizedummy \
@@ -54,37 +54,37 @@ sizedummy \
 all: main-build
 
 # Main-build Target
-main-build: LCD.elf secondary-outputs
+main-build: ADC.elf secondary-outputs
 
 # Tool invocations
-LCD.elf: $(OBJS) $(USER_OBJS) makefile objects.mk $(OPTIONAL_TOOL_DEPS)
+ADC.elf: $(OBJS) $(USER_OBJS) makefile objects.mk $(OPTIONAL_TOOL_DEPS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: AVR C Linker'
-	avr-gcc -Wl,-Map,LCD.map -mmcu=atmega32 -o "LCD.elf" $(OBJS) $(USER_OBJS) $(LIBS)
+	avr-gcc -Wl,-Map,ADC.map -mmcu=atmega32 -o "ADC.elf" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
-LCD.lss: LCD.elf makefile objects.mk $(OPTIONAL_TOOL_DEPS)
+ADC.lss: ADC.elf makefile objects.mk $(OPTIONAL_TOOL_DEPS)
 	@echo 'Invoking: AVR Create Extended Listing'
-	-avr-objdump -h -S LCD.elf  >"LCD.lss"
+	-avr-objdump -h -S ADC.elf  >"ADC.lss"
 	@echo 'Finished building: $@'
 	@echo ' '
 
-LCD.hex: LCD.elf makefile objects.mk $(OPTIONAL_TOOL_DEPS)
+ADC.hex: ADC.elf makefile objects.mk $(OPTIONAL_TOOL_DEPS)
 	@echo 'Create Flash image (ihex format)'
-	-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
+	-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex ADC.elf  "ADC.hex"
 	@echo 'Finished building: $@'
 	@echo ' '
 
-sizedummy: LCD.elf makefile objects.mk $(OPTIONAL_TOOL_DEPS)
+sizedummy: ADC.elf makefile objects.mk $(OPTIONAL_TOOL_DEPS)
 	@echo 'Invoking: Print Size'
-	-avr-size --format=avr --mcu=atmega32 LCD.elf
+	-avr-size --format=avr --mcu=atmega32 ADC.elf
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) $(FLASH_IMAGE)$(ELFS)$(OBJS)$(ASM_DEPS)$(S_DEPS)$(SIZEDUMMY)$(S_UPPER_DEPS)$(LSS)$(C_DEPS) LCD.elf
+	-$(RM) $(FLASH_IMAGE)$(ELFS)$(OBJS)$(ASM_DEPS)$(S_DEPS)$(SIZEDUMMY)$(S_UPPER_DEPS)$(LSS)$(C_DEPS) ADC.elf
 	-@echo ' '
 
 secondary-outputs: $(LSS) $(FLASH_IMAGE) $(SIZEDUMMY)

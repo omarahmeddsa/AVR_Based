@@ -34,17 +34,17 @@ $(wildcard ../makefile.init) \
 $(wildcard ../makefile.targets) \
 
 
-BUILD_ARTIFACT_NAME := LCD
+BUILD_ARTIFACT_NAME := Ultrasonic
 BUILD_ARTIFACT_EXTENSION := elf
 BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
 
 # Add inputs and outputs from these tool invocations to the build variables 
 LSS += \
-LCD.lss \
+Ultrasonic.lss \
 
 FLASH_IMAGE += \
-LCD.hex \
+Ultrasonic.hex \
 
 SIZEDUMMY += \
 sizedummy \
@@ -54,37 +54,37 @@ sizedummy \
 all: main-build
 
 # Main-build Target
-main-build: LCD.elf secondary-outputs
+main-build: Ultrasonic.elf secondary-outputs
 
 # Tool invocations
-LCD.elf: $(OBJS) $(USER_OBJS) makefile objects.mk $(OPTIONAL_TOOL_DEPS)
+Ultrasonic.elf: $(OBJS) $(USER_OBJS) makefile objects.mk $(OPTIONAL_TOOL_DEPS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: AVR C Linker'
-	avr-gcc -Wl,-Map,LCD.map -mmcu=atmega32 -o "LCD.elf" $(OBJS) $(USER_OBJS) $(LIBS)
+	avr-gcc -Wl,-Map,Ultrasonic.map -mmcu=atmega32 -o "Ultrasonic.elf" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
-LCD.lss: LCD.elf makefile objects.mk $(OPTIONAL_TOOL_DEPS)
+Ultrasonic.lss: Ultrasonic.elf makefile objects.mk $(OPTIONAL_TOOL_DEPS)
 	@echo 'Invoking: AVR Create Extended Listing'
-	-avr-objdump -h -S LCD.elf  >"LCD.lss"
+	-avr-objdump -h -S Ultrasonic.elf  >"Ultrasonic.lss"
 	@echo 'Finished building: $@'
 	@echo ' '
 
-LCD.hex: LCD.elf makefile objects.mk $(OPTIONAL_TOOL_DEPS)
+Ultrasonic.hex: Ultrasonic.elf makefile objects.mk $(OPTIONAL_TOOL_DEPS)
 	@echo 'Create Flash image (ihex format)'
-	-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex LCD.elf  "LCD.hex"
+	-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex Ultrasonic.elf  "Ultrasonic.hex"
 	@echo 'Finished building: $@'
 	@echo ' '
 
-sizedummy: LCD.elf makefile objects.mk $(OPTIONAL_TOOL_DEPS)
+sizedummy: Ultrasonic.elf makefile objects.mk $(OPTIONAL_TOOL_DEPS)
 	@echo 'Invoking: Print Size'
-	-avr-size --format=avr --mcu=atmega32 LCD.elf
+	-avr-size --format=avr --mcu=atmega32 Ultrasonic.elf
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) $(FLASH_IMAGE)$(ELFS)$(OBJS)$(ASM_DEPS)$(S_DEPS)$(SIZEDUMMY)$(S_UPPER_DEPS)$(LSS)$(C_DEPS) LCD.elf
+	-$(RM) $(FLASH_IMAGE)$(ELFS)$(OBJS)$(ASM_DEPS)$(S_DEPS)$(SIZEDUMMY)$(S_UPPER_DEPS)$(LSS)$(C_DEPS) Ultrasonic.elf
 	-@echo ' '
 
 secondary-outputs: $(LSS) $(FLASH_IMAGE) $(SIZEDUMMY)

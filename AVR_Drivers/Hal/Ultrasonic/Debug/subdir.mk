@@ -6,16 +6,22 @@
 C_SRCS += \
 ../Dio.c \
 ../LCD.c \
+../Timer_1.c \
+../Ultrasonic.c \
 ../main.c 
 
 OBJS += \
 ./Dio.o \
 ./LCD.o \
+./Timer_1.o \
+./Ultrasonic.o \
 ./main.o 
 
 C_DEPS += \
 ./Dio.d \
 ./LCD.d \
+./Timer_1.d \
+./Ultrasonic.d \
 ./main.d 
 
 
