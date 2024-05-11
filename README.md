@@ -5,14 +5,10 @@ Welcome to the AVR Repository! This repository is dedicated to providing AVR-bas
 
 ## Table of Contents
 1. [AVR Drivers](#avr-drivers)
-2. [Problem Solving](#problem-solving)
-3. [AVR Projects](#avr-projects)
+2 [AVR Projects](#avr-projects)
 
 ## AVR Drivers
 The `AVR_Drivers` folder contains essential drivers needed to interface with microcontrollers based on AVR, particularly optimized for ATmega32 with an 8MHz clock. These drivers are designed to facilitate easy integration into your projects.
-
-## Problem Solving
-Explore the `Problem Solving` folder to find a collection of problems solved in C. These examples cover a range of topics and serve as valuable learning resources for anyone interested in honing their programming skills.
 
 ## AVR Projects
 The `AVR Projects` section includes various projects for AVR microcontrollers. Each project folder contains a Proteus simulation file and a well-commented `SRC_Code` file. The simulation file allows you to visualize and test the project in a virtual environment, while the source code provides detailed comments to help you understand and customize the code for your specific needs.
